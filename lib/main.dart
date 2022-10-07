@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
               loginC.authStatus.value == AuthStatus.unauthenticated) {
             return LoginPage();
           } else {
-            return const Dashboard();
+            return Dashboard();
           }
         }
       },

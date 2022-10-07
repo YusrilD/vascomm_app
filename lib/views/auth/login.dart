@@ -4,6 +4,7 @@ import 'package:vascomm_app/controller/login_controller.dart';
 import 'package:vascomm_app/source/image_assets.dart';
 import 'package:vascomm_app/utils/reuse.dart';
 import 'package:vascomm_app/views/auth/register.dart';
+import 'package:vascomm_app/views/main/dashboard.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -46,7 +47,9 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             use.spaceH(40),
-            use.authButton("Login", () {}),
+            use.authButton("Login", () {
+              use.navPush(context, () => Dashboard());
+            }),
             use.spaceH(30),
             use.loginRegisterRedirect(
               "Belum punya akun ?",
