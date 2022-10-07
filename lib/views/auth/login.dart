@@ -1,95 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:vascomm_app/controller/login_controller.dart';
 import 'package:vascomm_app/source/image_assets.dart';
 import 'package:vascomm_app/utils/reuse.dart';
+import 'package:vascomm_app/views/auth/register.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
 
   final Reuse use = Reuse();
+  var loginC = Get.find<LoginController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          use.spaceH(110),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            use.upperWidget(),
+            use.titleInput("Email"),
+            use.spaceH(16),
+            use.inputLogin(
+              loginC,
+              hintText: "Masukkan email anda",
+              type: 0,
             ),
-            child: RichText(
-              text: const TextSpan(
-                text: "Hai, ",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: "GilroyLight",
-                  fontSize: 28,
+            use.spaceH(40),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                use.titleInput("Password"),
+                TextButton(
+                  onPressed: () {},
+                  child: use.titleInput("Lupa Password Anda ?"),
                 ),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: "Selamat Datang",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w800,
-                      fontFamily: "GilroyExtraBold",
-                      fontSize: 28,
-                    ),
-                  ),
-                ],
+              ],
+            ),
+            Obx(
+              () => use.inputLogin(
+                loginC,
+                hintText: "Masukkan password anda",
+                isPassword: true,
+                type: 0,
               ),
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text(
-              "Silahkan login untuk melanjutkan",
-              style: TextStyle(
-                color: Color(0xFF597393),
-                fontFamily: "GilroyLight",
-                fontSize: 12,
-              ),
+            use.spaceH(40),
+            use.authButton("Login", () {}),
+            use.spaceH(30),
+            use.loginRegisterRedirect(
+              "Belum punya akun ?",
+              "  Daftar sekarang",
+              () {
+                use.navPush(context, () => RegisterPage());
+              },
             ),
-          ),
-          Container(
-            width: Get.width,
-            alignment: Alignment.centerRight,
-            child: Image.asset(ImageAssets.loginUpper),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Container(
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.03),
-                    blurRadius: 5.0,
-                    spreadRadius: -5.0,
-                    offset: const Offset(-4, 25),
-                  ),
-                ],
-              ),
-              child: const TextField(
-                  decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                hintText: "Masukkan email anda",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.0),
-                  ),
-                  borderSide: BorderSide(
-                    width: 0,
-                    style: BorderStyle.none,
-                  ),
-                ),
-              )),
-            ),
-          )
-        ],
+            use.spaceH(40),
+            use.rights(),
+            use.spaceH(20),
+          ],
+        ),
       ),
     );
   }

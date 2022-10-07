@@ -82,6 +82,15 @@ flutter:
     - family: GilroyLight
       fonts:
         - asset: assets/fonts/GilroyLight.otf
+    - family: GilroyRegular
+      fonts:
+        - asset: assets/fonts/GilroyRegular.ttf
+    - family: GilroySemiBold
+      fonts:
+        - asset: assets/fonts/GilroySemiBold.ttf
+    - family: GilroyBold
+      fonts:
+        - asset: assets/fonts/GilroyBold.ttf
     - family: GilroyExtraBold
       fonts:
         - asset: assets/fonts/GilroyExtraBold.otf
